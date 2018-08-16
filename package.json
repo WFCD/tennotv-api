@@ -1,0 +1,64 @@
+{
+  "name": "tennotv-api",
+  "version": "0.0.0-development",
+  "description": "Warframe YouTube Content middleware API",
+  "scripts": {
+    "test": "mocha mochaspec.js",
+    "start": "node ./server.js",
+    "dev": "nodemon",
+    "travis-deploy-once": "travis-deploy-once",
+    "semantic-release": "semantic-release"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/WFCD/tennotv.git"
+  },
+  "keywords": [
+    "warframe",
+    "tennotv"
+  ],
+  "author": "TobiTenno",
+  "license": "APACHE 2.0",
+  "bugs": {
+    "url": "https://github.com/WFCD/tennotv-api/issues"
+  },
+  "homepage": "https://tenno.tv",
+  "dependencies": {
+    "chai": "^4.1.2",
+    "eslint": "^5.0.0",
+    "express": "~4.16.3",
+    "nodemon": "^1.18.3",
+    "sinon": "6.0.1",
+    "snekfetch": "^4.0.4",
+    "supertest": "^3.0.0",
+    "winston": "^3.0.0"
+  },
+  "devDependencies": {
+    "eslint-config-airbnb": "^17.0.0",
+    "eslint-plugin-import": "^2.11.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.7.0",
+    "greenkeeper-lockfile": "^1.14.0",
+    "mocha": "^5.1.1",
+    "vinyl-source-stream": "^2.0.0",
+    "travis-deploy-once": "^5.0.0",
+    "semantic-release": "^15.5.0"
+  },
+  "engines": {
+    "node": ">=8.9.0",
+    "npm": ">=6.1.0"
+  },
+  "nodemonConfig": {
+    "verbose": false,
+    "ignore": [
+      "public/*",
+      "assets/*",
+      "routes/*"
+    ],
+    "env": {
+      "PORT": 3001,
+      "LOG_LEVEL": "silly",
+      "VIDEO_API_TOKEN": "lm2uLRTSSK"
+    }
+  }
+}
