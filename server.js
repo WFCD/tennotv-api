@@ -54,6 +54,4 @@ app.use((req, res) => {
   res.status(404).end();
 });
 
-app.listen(process.env.PORT || 3001, process.env.HOSTNAME || '127.0.0.1');
-
 module.exports = app;
