@@ -46,8 +46,8 @@
     "semantic-release": "^15.5.0"
   },
   "engines": {
-    "node": ">=8.9.0",
-    "npm": ">=6.1.0"
+    "node": "10.3.0",
+    "npm": "6.1.0"
   },
   "nodemonConfig": {
     "verbose": false,
