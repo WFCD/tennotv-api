@@ -3,7 +3,7 @@
   "version": "0.0.0-development",
   "description": "Warframe YouTube Content middleware API",
   "scripts": {
-    "test": "mocha mochaspec.js",
+    "test": "mocha mochaspec.js --exit",
     "start": "node ./server.js",
     "dev": "nodemon",
     "travis-deploy-once": "travis-deploy-once",
