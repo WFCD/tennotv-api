@@ -4,7 +4,7 @@
   "description": "Warframe YouTube Content middleware API",
   "scripts": {
     "test": "mocha mochaspec.js --exit",
-    "start": "node ./server.js",
+    "start": "node ./bin/www",
     "dev": "nodemon",
     "travis-deploy-once": "travis-deploy-once",
     "semantic-release": "semantic-release"
