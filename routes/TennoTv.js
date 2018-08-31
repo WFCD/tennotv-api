@@ -1,3 +1,5 @@
+'use strict';
+
 const snek = require('snekfetch');
 const Route = require('./Route.js');
 
@@ -10,50 +12,50 @@ class TennoTv extends Route {
 
     if (option === 'get') {
       switch (req.query.method) {
-      case 'get-watched-videos-list':
-        await this.getWatchedVideos(req, res);
-        break;
-      case 'get-content-creators':
-        await this.getContentCreatorsList(req, res);
-        break;
-      case 'get-videos-list':
-      default:
-        await this.getNewVideos(req, res);
-        break;
+        case 'get-watched-videos-list':
+          await this.getWatchedVideos(req, res);
+          break;
+        case 'get-content-creators':
+          await this.getContentCreatorsList(req, res);
+          break;
+        case 'get-videos-list':
+        default:
+          await this.getNewVideos(req, res);
+          break;
       }
     }
     if (option === 'post') {
-      const {body} = req;
+      const { body } = req;
       if (body && body.method) {
         switch (body.method) {
-        case 'add-watcher-history':
-          await this.addWatcherHistory(req, res);
-          break;
-        default:
-          break;
+          case 'add-watcher-history':
+            await this.addWatcherHistory(req, res);
+            break;
+          default:
+            break;
         }
       } else if (req.query.method) {
         switch (req.query.method) {
-        case 'add-watcher-history':
-          await this.addWatcherHistory(req, res);
-          break;
-        default:
-          break;
+          case 'add-watcher-history':
+            await this.addWatcherHistory(req, res);
+            break;
+          default:
+            break;
         }
       } else {
         res.status(500);
-        this.setHeadersAndJson(res, {message: 'Error parsing post body.'});
+        this.setHeadersAndJson(res, { message: 'Error parsing post body.' });
       }
     }
     if (option === 'delete' || option === 'options') {
       switch (req.query.method) {
-      case 'delete-watched-videos-list':
-        await this.deleteWatcherHistory(req, res);
-        break;
-      default:
-        res.status(404);
-        this.setHeadersAndJson(res, {message: 'No such method'});
-        break;
+        case 'delete-watched-videos-list':
+          await this.deleteWatcherHistory(req, res);
+          break;
+        default:
+          res.status(404);
+          this.setHeadersAndJson(res, { message: 'No such method' });
+          break;
       }
     }
   }
@@ -74,7 +76,7 @@ class TennoTv extends Route {
     const url = `${base}?${opts.join('&')}`;
     try {
       this.logger.log('debug', url);
-      const snekRes = JSON.parse((await snek.get(url, {headers: {'content-type': 'application/json'}})).body.toString());
+      const snekRes = JSON.parse((await snek.get(url, { headers: { 'content-type': 'application/json' } })).body.toString());
       const videos = [];
       if (snekRes[0] instanceof Array) {
         videos.push(snekRes[0][0]);
@@ -87,7 +89,7 @@ class TennoTv extends Route {
     } catch (e) {
       this.logger.log('error', e);
       res.status(500);
-      this.setHeadersAndJson(res, {message: 'Error fetching next videos.'});
+      this.setHeadersAndJson(res, { message: 'Error fetching next videos.' });
     }
   }
 
@@ -99,12 +101,12 @@ class TennoTv extends Route {
     const url = `${base}?${opts.join('&')}`;
     try {
       this.logger.log('debug', url);
-      const snekRes = JSON.parse((await snek.get(url, {headers: {'content-type': 'application/json'}})).body.toString());
+      const snekRes = JSON.parse((await snek.get(url, { headers: { 'content-type': 'application/json' } })).body.toString());
       this.setHeadersAndJson(res, snekRes);
     } catch (e) {
       this.logger.log('error', e);
       res.status(500);
-      this.setHeadersAndJson(res, {message: 'Error fetching content creators list.'});
+      this.setHeadersAndJson(res, { message: 'Error fetching content creators list.' });
     }
   }
 
@@ -117,27 +119,27 @@ class TennoTv extends Route {
     try {
       this.logger.log('debug', url);
       const snekRes = JSON.parse((
-        await snek.get(url, {headers: {'content-type': 'application/json'}})
+        await snek.get(url, { headers: { 'content-type': 'application/json' } })
       ).body.toString());
       this.setHeadersAndJson(res, snekRes);
     } catch (e) {
       this.logger.log('error', e);
       res.status(500);
-      this.setHeadersAndJson(res, {message: 'Error fetching watcher history.'});
+      this.setHeadersAndJson(res, { message: 'Error fetching watcher history.' });
     }
   }
 
   async addWatcherHistory(req, res) {
-    const {body} = req;
+    const { body } = req;
     if (!body.token && !req.query.token) {
       res.status(403);
-      this.setHeadersAndJson(res, {message: 'No user token provided.'});
+      this.setHeadersAndJson(res, { message: 'No user token provided.' });
       return;
     }
 
     if (!body.video_id && !req.query.video_id) {
       res.status(403);
-      this.setHeadersAndJson(res, {message: 'No video id provided.'});
+      this.setHeadersAndJson(res, { message: 'No video id provided.' });
       return;
     }
     const opts = [
@@ -152,13 +154,13 @@ class TennoTv extends Route {
       const snekRes = JSON.parse((
         await snek.get(
           url,
-          {headers: {'content-type': 'application/json'}},
+          { headers: { 'content-type': 'application/json' } },
         )).body.toString());
       this.setHeadersAndJson(res, snekRes);
     } catch (e) {
       this.logger.log('error', e.type === 'Buffer' ? e.string : e.toString());
       res.status(500);
-      this.setHeadersAndJson(res, {message: 'Error adding to watcher history.'});
+      this.setHeadersAndJson(res, { message: 'Error adding to watcher history.' });
     }
   }
 
@@ -171,12 +173,12 @@ class TennoTv extends Route {
     const url = `${base}?${opts.join('&')}`;
     try {
       this.logger.log('debug', url);
-      const snekRes = JSON.parse((await snek.get(url, {headers: {'content-type': 'application/json'}})).body.toString());
+      const snekRes = JSON.parse((await snek.get(url, { headers: { 'content-type': 'application/json' } })).body.toString());
       this.setHeadersAndJson(res, snekRes);
     } catch (e) {
       this.logger.log('error', e);
       res.status(500);
-      this.setHeadersAndJson(res, {message: 'Error deleting from watcher history.'});
+      this.setHeadersAndJson(res, { message: 'Error deleting from watcher history.' });
     }
   }
 }
