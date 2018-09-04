@@ -52,7 +52,7 @@ const app = express();
 app.use(helmet());
 app.use(express.json());
 
-app.get('/', async (req, res) => {
+app.all('/', async (req, res) => {
   await routes.tennotv.handle(req, res, req.method.toLowerCase());
 });
 
