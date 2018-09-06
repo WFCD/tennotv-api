@@ -32,7 +32,7 @@
     "nodemon": "^1.18.3",
     "sinon": "6.1.5",
     "snekfetch": "^4.0.4",
-    "supertest": "^3.0.0",
+    "supertest": "^3.3.0",
     "winston": "^3.0.0"
   },
   "devDependencies": {
