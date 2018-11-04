@@ -13,7 +13,6 @@ const {
 /* eslint-enable import/no-unresolved */
 
 const base = 'http://xenogelion.com/Hidden/content_creator_scraper.php';
-const secretToken = process.env.VIDEO_API_TOKEN;
 
 /* Routes */
 const TennoTv = require('./routes/TennoTv');
@@ -58,10 +57,10 @@ app.all('/', async (req, res) => {
 
 app.get('/dashboard', async (req, res) => {
   logger.log('silly', `Got ${req.originalUrl} | Option: ${req.method.toLowerCase()}`);
-  var opts = ['method=get-content-creator-playlists'];
+  let opts = ['method=get-content-creator-playlists'];
 
-  if(req.query.playlist == 'categories') {
-      opts = ['method=get-categories-playlists'];
+  if (req.query.playlist === 'categories') {
+    opts = ['method=get-categories-playlists'];
   }
 
   const url = `${base}?${opts.join('&')}`;
