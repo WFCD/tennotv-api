@@ -58,7 +58,12 @@ app.all('/', async (req, res) => {
 
 app.get('/dashboard', async (req, res) => {
   logger.log('silly', `Got ${req.originalUrl} | Option: ${req.method.toLowerCase()}`);
-  const opts = ['method=get-content-creator-playlists'];
+  var opts = ['method=get-content-creator-playlists'];
+
+  if(req.query.playlist == 'categories') {
+      opts = ['method=get-categories-playlists'];
+  }
+
   const url = `${base}?${opts.join('&')}`;
   try {
     logger.log('debug', url);
