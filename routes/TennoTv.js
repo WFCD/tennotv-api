@@ -1,6 +1,6 @@
 'use strict';
 
-const snek = require('snekfetch');
+const fetch = require('node-fetch');
 const Route = require('./Route.js');
 
 const base = 'http://xenogelion.com/Hidden/content_creator_scraper.php';
@@ -76,7 +76,7 @@ class TennoTv extends Route {
     const url = `${base}?${opts.join('&')}`;
     try {
       this.logger.log('debug', url);
-      const snekRes = JSON.parse((await snek.get(url, { headers: { 'content-type': 'application/json' } })).body.toString());
+      const snekRes = await fetch(url).then(data => data.json());
       const videos = [];
       if (snekRes[0] instanceof Array) {
         videos.push(snekRes[0][0]);
@@ -101,7 +101,7 @@ class TennoTv extends Route {
     const url = `${base}?${opts.join('&')}`;
     try {
       this.logger.log('debug', url);
-      const snekRes = JSON.parse((await snek.get(url, { headers: { 'content-type': 'application/json' } })).body.toString());
+      const snekRes =  await fetch(url).then(data => data.json());
       this.setHeadersAndJson(res, snekRes);
     } catch (e) {
       this.logger.log('error', e);
@@ -118,9 +118,7 @@ class TennoTv extends Route {
     const url = `${base}?${opts.join('&')}`;
     try {
       this.logger.log('debug', url);
-      const snekRes = JSON.parse((
-        await snek.get(url, { headers: { 'content-type': 'application/json' } })
-      ).body.toString());
+      const snekRes =  await fetch(url).then(data => data.json());
       this.setHeadersAndJson(res, snekRes);
     } catch (e) {
       this.logger.log('error', e);
@@ -151,11 +149,7 @@ class TennoTv extends Route {
     const url = `${base}?${opts.join('&')}`;
     try {
       this.logger.log('debug', url);
-      const snekRes = JSON.parse((
-        await snek.get(
-          url,
-          { headers: { 'content-type': 'application/json' } },
-        )).body.toString());
+      const snekRes =  await fetch(url).then(data => data.json());
       this.setHeadersAndJson(res, snekRes);
     } catch (e) {
       this.logger.log('error', e.type === 'Buffer' ? e.string : e.toString());
@@ -173,7 +167,7 @@ class TennoTv extends Route {
     const url = `${base}?${opts.join('&')}`;
     try {
       this.logger.log('debug', url);
-      const snekRes = JSON.parse((await snek.get(url, { headers: { 'content-type': 'application/json' } })).body.toString());
+      const snekRes =  await fetch(url).then(data => data.json());
       this.setHeadersAndJson(res, snekRes);
     } catch (e) {
       this.logger.log('error', e);

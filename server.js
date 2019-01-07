@@ -3,7 +3,7 @@
 /* eslint-disable import/no-unresolved */
 const express = require('express');
 const helmet = require('helmet');
-const snek = require('snekfetch');
+const fetch = require('node-fetch');
 
 const { transports, createLogger, format } = require('winston');
 
@@ -59,15 +59,20 @@ app.get('/dashboard', async (req, res) => {
   logger.log('silly', `Got ${req.originalUrl} | Option: ${req.method.toLowerCase()}`);
   let opts = ['method=get-content-creator-playlists'];
 
-  if (req.query.playlist === 'categories') {
-    opts = ['method=get-categories-playlists'];
-  }
-
-  const url = `${base}?${opts.join('&')}`;
+  let url = `${base}?${opts.join('&')}`;
+  
   try {
     logger.log('debug', url);
-    const snekRes = JSON.parse((await snek.get(url, { headers: { 'content-type': 'application/json' } })).body.toString());
-    setHeadersAndJson(res, snekRes);
+    const contentCreators = await fetch(url).then(data => data.json());
+    
+    const playlists = {
+      creators: contentCreators,
+    };
+    opts = ['method=get-categories-playlists'];
+    url = `${base}?${opts.join('&')}`;
+    playlists.categories = await fetch(url).then(data => data.json());
+    
+    setHeadersAndJson(res, playlists);
   } catch (error) {
     logger.log('error', error);
     res.status(500);

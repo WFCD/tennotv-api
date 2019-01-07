@@ -6,8 +6,9 @@ const router = require('./server');
 
 app.use(router);
 
-describe('GET /', () => {
-  it('respond with 200', done => {
+describe('GET', () => {
+  describe('/', () => {
+    it('respond with 200', done => {
     request(app)
       .get('/')
       .expect(200)
@@ -17,5 +18,21 @@ describe('GET /', () => {
         }
         return done();
       });
+    });
+  });
+  
+  describe('/dashboard', () => {
+    it('respond with 200', done => {
+    request(app)
+      .get('/')
+      .expect('Content-Type', /json/)
+      .expect(200)
+      .end((err, res) => {
+        if (err && res !== null) {
+          return done(err);
+        }
+        return done();
+      });
+    });
   });
 });
