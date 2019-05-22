@@ -72,6 +72,7 @@ class TennoTv extends Route {
       contentCreators.length ? `content_creator_ids=${req.query.content_creator_ids}` : '',
       req.query.initial_video ? `video_id=${req.query.initial_video}` : '',
       contentCreators.length ? 'include_excluded=1' : '',
+      'tenno_tv=true',
     ].filter(opt => opt);
     const url = `${base}?${opts.join('&')}`;
     try {
@@ -97,6 +98,7 @@ class TennoTv extends Route {
     const opts = [
       'method=get-content-creators',
       `secret_token=${secretToken}`,
+      'tenno_tv=true',
     ];
     const url = `${base}?${opts.join('&')}`;
     try {
@@ -114,6 +116,7 @@ class TennoTv extends Route {
     const opts = [
       'method=get-history-list',
       `user_token=${req.query.token}`,
+      'tenno_tv=true',
     ];
     const url = `${base}?${opts.join('&')}`;
     try {
@@ -145,6 +148,7 @@ class TennoTv extends Route {
       `user_token=${body.token || req.query.token}`,
       `video_id=${body.video_id || req.query.video_id}`,
       `secret_token=${secretToken}`,
+      'tenno_tv=true',
     ];
     const url = `${base}?${opts.join('&')}`;
     try {
@@ -163,6 +167,7 @@ class TennoTv extends Route {
       'method=delete-watched-videos-list',
       `user_token=${req.query.token}`,
       `secret_token=${secretToken}`,
+      'tenno_tv=true',
     ];
     const url = `${base}?${opts.join('&')}`;
     try {
