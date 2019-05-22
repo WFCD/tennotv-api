@@ -68,7 +68,7 @@ app.get('/dashboard', async (req, res) => {
     const playlists = {
       creators: contentCreators,
     };
-    opts = ['method=get-categories-playlists'];
+    opts = ['method=get-categories-playlists', 'tenno_tv=true'];
     url = `${base}?${opts.join('&')}`;
     playlists.categories = await fetch(url).then(data => data.json());
     
