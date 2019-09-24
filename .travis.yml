@@ -12,8 +12,6 @@ node_js:
 
 cache:
   directories:
-    - "node_modules"
-    - "public"
     - ~/.npm
 git:
   depth: 3
