@@ -3,11 +3,11 @@
   "version": "0.0.0-development",
   "description": "Warframe YouTube Content middleware API",
   "scripts": {
-    "test": "npx mocha mochaspec.js --exit",
-    "start": "node ./bin/www",
-    "dev": "nodemon",
-    "travis-deploy-once": "travis-deploy-once",
-    "semantic-release": "semantic-release"
+    "test": "npx mocha --exit",
+    "start": "node server.js",
+    "dev": "npx nodemon",
+    "lint": "npx eslint utilities.js server.js controllers/*.js",
+    "lint:fix": "npx eslint utilities.js server.js controllers/*.js --fix"
   },
   "repository": {
     "type": "git",
@@ -24,27 +24,20 @@
   },
   "homepage": "https://tenno.tv",
   "dependencies": {
-    "body-parser": "^1.18.3",
-    "chai": "^4.2.0",
-    "eslint": "^6.0.0",
     "express": "^4.16.4",
     "helmet": "^3.15.0",
     "node-fetch": "^2.3.0",
-    "nodemon": "^1.18.4",
-    "sinon": "7.4.0",
-    "supertest": "^4.0.0",
     "winston": "^3.1.0"
   },
   "devDependencies": {
-    "eslint-config-airbnb": "^18.0.1",
-    "eslint-plugin-import": "^2.11.0",
-    "eslint-plugin-jsx-a11y": "^6.1.2",
-    "eslint-plugin-react": "^7.12.3",
+    "chai": "^4.2.0",
+    "eslint": "^6.1.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2",
     "greenkeeper-lockfile": "^1.14.0",
-    "mocha": "^6.0.0",
-    "semantic-release": "^15.13.2",
-    "travis-deploy-once": "^5.0.9",
-    "vinyl-source-stream": "^2.0.0"
+    "mocha": "^6.2.0",
+    "sinon": "^7.5.0",
+    "supertest": "^4.0.2"
   },
   "engines": {
     "node": "10.3.0",
@@ -62,5 +55,8 @@
       "LOG_LEVEL": "silly",
       "VIDEO_API_TOKEN": "lm2uLRTSSK"
     }
+  },
+  "directories": {
+    "test": "test/*.js"
   }
 }

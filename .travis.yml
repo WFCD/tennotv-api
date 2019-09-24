@@ -5,6 +5,10 @@ notifications:
 
 node_js:
   - '8'
+  - 9
+  - 10
+  - 11
+  - 12
 
 cache:
   directories:
@@ -18,22 +22,16 @@ branches:
   except:
     - /^v\d+\.\d+\.\d+$/
 
-before_install:
-  - npm i -g npm@5.5.1
+stages:
+  - lint
+  - test
+  - coverage
 
-install: npm install
-
-before_script:
-  - npm install -g mocha gulp gulp-minify gulp-clean-css del
-  - export AUTHOR_NAME="$(git log -1 $TRAVIS_COMMIT --pretty="%aN")"
-
-script:
-  - npm test
-
-after_success:
-  - chmod +x .github/success.sh
-  - ./.github/success.sh
-  - npm run travis-deploy-once "npm run semantic-release"
-after_failure:
-  - chmod +x .github/fail.sh
-  - ./.github/fail.sh
+jobs:
+  include:
+    - stage: lint
+      script: npm run lint
+    - stage: test
+      script: npm test
+    - stage: coverage
+      script: npm run coverage
