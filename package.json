@@ -3,11 +3,12 @@
   "version": "0.0.0-development",
   "description": "Warframe YouTube Content middleware API",
   "scripts": {
-    "test": "npx mocha --exit",
+    "test": "npx nyc --reporter=html --reporter=text mocha --exit",
     "start": "node server.js",
     "dev": "npx nodemon",
     "lint": "npx eslint utilities.js server.js controllers/*.js",
-    "lint:fix": "npx eslint utilities.js server.js controllers/*.js --fix"
+    "lint:fix": "npx eslint utilities.js server.js controllers/*.js --fix",
+    "coverage": "npm test && npx nyc report --reporter=text-lcov | npx coveralls"
   },
   "repository": {
     "type": "git",
