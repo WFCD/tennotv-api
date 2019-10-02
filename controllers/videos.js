@@ -24,11 +24,11 @@ const getList = async (req, res) => {
     creators,
     contentCreators.length ? 'include_excluded=1' : '',
     'tenno_tv=true',
-  ].filter(opt => opt);
+  ].filter((opt) => opt);
 
   const url = `${baseUrl}?${opts.join('&')}`;
   try {
-    const snekRes = await fetch(url).then(data => data.json());
+    const snekRes = await fetch(url).then((data) => data.json());
     const videos = [];
     if (snekRes[0] instanceof Array) {
       videos.push(snekRes[0][0]);
@@ -52,7 +52,7 @@ const getWatched = async (req, res) => {
   ];
   const url = `${baseUrl}?${opts.join('&')}`;
   try {
-    setHeadersAndJson(res, await fetch(url).then(data => data.json()));
+    setHeadersAndJson(res, await fetch(url).then((data) => data.json()));
   } catch (e) {
     logger.error(e);
     res.status(500);
@@ -67,7 +67,7 @@ const getContentCreatorsList = async (req, res) => {
   ];
   const url = `${baseUrl}?${opts.join('&')}`;
   try {
-    const snekRes = await fetch(url).then(data => data.json());
+    const snekRes = await fetch(url).then((data) => data.json());
     setHeadersAndJson(res, snekRes);
   } catch (e) {
     logger.error('e');

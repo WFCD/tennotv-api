@@ -15,7 +15,7 @@ const {
   combine, label, printf, colorize,
 } = format;
 const transport = new transports.Console({ colorize: true });
-const logFormat = printf(info => `[${info.label}] ${info.level}: ${info.message}`);
+const logFormat = printf((info) => `[${info.label}] ${info.level}: ${info.message}`);
 const logger = createLogger({
   format: combine(
     colorize(),

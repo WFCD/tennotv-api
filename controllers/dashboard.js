@@ -12,14 +12,14 @@ router.get('/', async (req, res) => {
   let url = `${baseUrl}?${opts.join('&')}`;
 
   try {
-    const contentCreators = await fetch(url).then(data => data.json());
+    const contentCreators = await fetch(url).then((data) => data.json());
 
     const playlists = {
       creators: contentCreators,
     };
     opts = ['method=get-categories-playlists', 'tenno_tv=true'];
     url = `${baseUrl}?${opts.join('&')}`;
-    playlists.categories = await fetch(url).then(data => data.json());
+    playlists.categories = await fetch(url).then((data) => data.json());
 
     setHeadersAndJson(res, playlists);
   } catch (error) {
