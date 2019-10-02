@@ -46,8 +46,7 @@ const deleteH = async (req, res) => {
   ];
   const url = `${baseUrl}?${opts.join('&')}`;
   try {
-    logger.debug(url);
-    const snekRes = await fetch(url).then((data) => data.json());
+    const snekRes = await fetch(url).then(data => data.json());
     setHeadersAndJson(res, snekRes);
   } catch (e) {
     logger.error(e);
