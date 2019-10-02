@@ -7,12 +7,11 @@ const { logger, setHeadersAndJson, baseUrl } = require('../utilities');
 
 router.get('/', async (req, res) => {
   logger.log('silly', `Got ${req.originalUrl} | Option: ${req.method.toLowerCase()}`);
-  let opts = ['method=get-content-creator-playlists'];
+  let opts = ['method=get-content-creator-playlists', 'tenno_tv=true'];
 
   let url = `${baseUrl}?${opts.join('&')}`;
 
   try {
-    logger.log('debug', url);
     const contentCreators = await fetch(url).then((data) => data.json());
 
     const playlists = {

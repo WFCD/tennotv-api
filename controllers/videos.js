@@ -7,7 +7,6 @@ const {
 } = require('../utilities');
 
 const getList = async (req, res) => {
-  logger.debug(JSON.stringify(req.params));
   const contentCreators = typeof req.query.content_creator_ids !== 'undefined'
     ? (req.query.content_creator_ids || '').split(',')
     : [];
@@ -29,7 +28,6 @@ const getList = async (req, res) => {
 
   const url = `${baseUrl}?${opts.join('&')}`;
   try {
-    logger.debug(url);
     const snekRes = await fetch(url).then((data) => data.json());
     const videos = [];
     if (snekRes[0] instanceof Array) {
@@ -49,7 +47,7 @@ const getList = async (req, res) => {
 const getWatched = async (req, res) => {
   const opts = [
     'method=get-history-list',
-    `user_token=${req.query.token}`,
+    `user_token=${req.params.token}`,
     'tenno_tv=true',
   ];
   const url = `${baseUrl}?${opts.join('&')}`;
@@ -69,7 +67,6 @@ const getContentCreatorsList = async (req, res) => {
   ];
   const url = `${baseUrl}?${opts.join('&')}`;
   try {
-    logger.debug(url);
     const snekRes = await fetch(url).then((data) => data.json());
     setHeadersAndJson(res, snekRes);
   } catch (e) {
@@ -81,19 +78,6 @@ const getContentCreatorsList = async (req, res) => {
 
 router.get('/watched', getWatched);
 router.get('/creators', getContentCreatorsList);
-router.get('/', async (req, res) => {
-  switch (req.query.method) {
-    case 'get-watched-videos-list':
-      await getWatched(req, res);
-      break;
-    case 'get-content-creators':
-      await getContentCreatorsList(req, res);
-      break;
-    case 'get-videos-list':
-    default:
-      await getList(req, res);
-      break;
-  }
-});
+router.get('/', getList);
 
 module.exports = router;
