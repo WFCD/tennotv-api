@@ -2,7 +2,7 @@ const request = require('supertest');
 const express = require('express');
 
 const app = express();
-const router = require('./server');
+const router = require('../server');
 
 app.use(router);
 
