@@ -2,6 +2,7 @@
 
 const router = require('express').Router();
 const fetch = require('node-fetch');
+
 const {
   logger, setHeadersAndJson, baseUrl, token,
 } = require('../utilities');
