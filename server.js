@@ -16,7 +16,7 @@ app.use((req, res) => {
 });
 
 const port = process.env.PORT || 3001;
-const host = process.env.HOSTNAME || process.env.HOST || process.env.IP || 'localhost';
+const host = process.env.HOSTNAME || process.env.HOST || process.env.IP || '0.0.0.0';
 app.listen(port, host);
 
 logger.verbose(`Started listening on ${host}:${port}`);
