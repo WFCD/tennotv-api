@@ -37,7 +37,7 @@
     "eslint-plugin-import": "^2.18.2",
     "greenkeeper-lockfile": "^1.14.0",
     "mocha": "^6.2.0",
-    "sinon": "^7.5.0",
+    "sinon": "^8.0.0",
     "supertest": "^4.0.2"
   },
   "engines": {
