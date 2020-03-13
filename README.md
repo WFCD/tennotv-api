@@ -1,6 +1,6 @@
 # tennotv-api
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/WFCD/tennotv-api.svg)](https://greenkeeper.io/)
+
 
 Simple express app for middleware for tenno.tv
 
