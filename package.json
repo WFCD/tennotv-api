@@ -27,7 +27,7 @@
   "dependencies": {
     "express": "^4.17.1",
     "helmet": "^3.21.3",
-    "node-fetch": "^2.3.0",
+    "node-fetch": "^2.6.0",
     "winston": "^3.2.1"
   },
   "devDependencies": {
