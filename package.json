@@ -31,7 +31,7 @@
     "helmet": "^3.22.0",
     "node-fetch": "^2.6.0",
     "winston": "^3.2.1",
-    "snyk": "^1.316.1"
+    "snyk": "^1.316.2"
   },
   "devDependencies": {
     "chai": "^4.2.0",
