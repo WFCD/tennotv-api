@@ -24,6 +24,7 @@ router.get('/', async (req, res) => {
     setHeadersAndJson(res, playlists);
   } catch (error) {
     logger.log('error', error);
+    logger.log('debug', JSON.stringify(error));
     res.status(500);
     setHeadersAndJson(res, { message: 'Error fetching dashboard.' });
   }
