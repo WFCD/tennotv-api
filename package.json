@@ -28,7 +28,7 @@
   "homepage": "https://tenno.tv",
   "dependencies": {
     "express": "^4.17.1",
-    "helmet": "^3.23.2",
+    "helmet": "^3.23.3",
     "node-fetch": "^2.6.0",
     "winston": "^3.3.3"
   },
